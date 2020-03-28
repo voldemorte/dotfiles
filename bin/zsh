@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+function install_brew {
+  BREW_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh";
+  echo -n "- Installing homebrew.... ";
+  echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null;
+  if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; fi;
+}
+
+function macos {
+  type brew >/dev/null 2>&1 || { install_brew >&2; }
+  type zsh >/dev/null 2>&1 || { brew install zsh && chsh -s /bin/zsh >&2; }
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+}
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  macos
+  cp .zshrc ~/.zshrc
+fi
