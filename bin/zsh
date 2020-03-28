@@ -9,8 +9,12 @@ function install_brew {
 
 function macos {
   type brew >/dev/null 2>&1 || { install_brew >&2; }
+  type git >/dev/null 2>&1 || { brew install git >&2; }
   type zsh >/dev/null 2>&1 || { brew install zsh && chsh -s /bin/zsh >&2; }
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+  type docker >/dev/null 2>&1 || { brew install docker >&2; }
+  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+  fi;
 }
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
