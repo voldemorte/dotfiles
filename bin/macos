@@ -1,80 +1,32 @@
 #!/usr/bin/env bash
 
-function install_brew {
-  BREW_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh";
-  echo -n "- Installing homebrew.... ";
-  echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null;
-  if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; fi;
-}
+BREW_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh";
+echo -n "- Installing homebrew.... ";
+echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null;
+if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; fi;
+brew install git;
+brew install docker;
+brew cask install background-music;
+brew cask install firefox;
+brew cask install chromium;
+brew cask install google-chrome;
+brew cask install virtualbox;
+brew cask install virtualbox-extension-pack;
+brew install vim;
+brew install zsh;
+if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+fi;
+chsh -s /bin/zsh;
+brew install kubernetes-cli;
+brew install minikube;
+brew link minikube;
+minikube config set vm-driver virtualbox;
+minikube config set kubernetes-version $(kubectl version --client --short | cut -d: -f2 | tr -d '[:space:]');
+minikube config set bootstrapper kubeadm;
+brew install kubernetes-helm@3;
+brew cask install zoomus;
+brew cask install dropbox;
+brew cask install 1password;
+brew cask install 1clipboard;
 
-function install_git {
-  brew install git;
-}
-
-function install_docker {
-  brew install docker;
-}
-
-function install_background_music {
-  brew cask install background-music;
-}
-
-function install_firefox {
-  brew cask install firefox;
-}
-
-function install_chromium {
-  brew cask install chromium;
-}
-
-function install_chrome {
-  brew cask install google-chrome;
-}
-
-function install_virtualbox {
-  brew cask install virtualbox;
-  brew cask install virtualbox-extension-pack;
-}
-
-function install_vim {
-  brew install vim;
-}
-
-function install_zsh {
-  brew install zsh;
-  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
-  fi;
-  cp .zshrc ~/.zshrc;
-  chsh -s /bin/zsh;
-}
-
-function install_kubectl {
-  brew install kubernetes-cli;
-}
-
-function install_minikube {
-  brew install minikube;
-  brew link minikube;
-  minikube addons enable dashboard ingress ingress-dns istio istio-provisioner metrics-server default-storageclass storage-provisioner;
-  minikube config set vm-driver virtualbox;
-  minikube config set kubernetes-version $(kubectl version --client --short | cut -d: -f2 | tr -d '[:space:]');
-  minikube config set bootstrapper kubeadm;
-}
-
-function install_kubernetes_helm {
-  brew install kubernetes-helm@3;
-}
-
-install_git
-install_docker
-install_firefox
-install_chromium
-install_chrome
-install_virtualbox
-install_background_music
-install_vim
-install_zsh
-install_kubectl
-install_kubernetes_helm
-install_minikube
