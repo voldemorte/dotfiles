@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+function install_brew {
+  BREW_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh";
+  echo -n "- Installing homebrew.... ";
+  echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null;
+  if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; fi;
+}
+
+function install_git {
+  brew install git;
+}
+
+function install_docker {
+  brew install docker;
+}
+
+function install_background_music {
+  brew cask install background-music;
+}
+
+function install_firefox {
+  brew cask install firefox;
+}
+
+function install_chromium {
+  brew cask install chromium;
+}
+
+function install_chrome {
+  brew cask install google-chrome;
+}
+
+function install_virtualbox {
+  brew cask install virtualbox;
+  brew cask install virtualbox-extension-pack;
+}
+
+function install_vim {
+  brew install vim;
+  cp -v .vimrc ~/.vimrc;
+}
+
+function install_zsh {
+  brew install zsh;
+  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+  fi;
+  cp .zshrc ~/.zshrc;
+  chsh -s /bin/zsh;
+}
+
+install_git
+install_docker
+install_firefox
+install_chromium
+install_chrome
+install_virtualbox
+install_background_music
+install_vim
+install_zsh
