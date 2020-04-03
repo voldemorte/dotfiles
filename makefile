@@ -9,3 +9,7 @@ prepare_macos:
 .PHONY: configure_zsh
 configure_zsh:
 	bin/config_zsh
+
+.PHONY: configure_vim
+configure_vim:
+	bin/config_vim
