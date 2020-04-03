@@ -49,6 +49,23 @@ function install_zsh {
   chsh -s /bin/zsh;
 }
 
+function install_kubectl {
+  brew install kubernetes-cli;
+}
+
+function install_minikube {
+  brew install minikube;
+  brew link minikube;
+  minikube addons enable dashboard ingress ingress-dns istio istio-provisioner metrics-server default-storageclass storage-provisioner;
+  minikube config set vm-driver virtualbox;
+  minikube config set kubernetes-version $(kubectl version --client --short | cut -d: -f2 | tr -d '[:space:]');
+  minikube config set bootstrapper kubeadm;
+}
+
+function install_kubernetes_helm {
+  brew install kubernetes-helm@3;
+}
+
 install_git
 install_docker
 install_firefox
@@ -58,3 +75,6 @@ install_virtualbox
 install_background_music
 install_vim
 install_zsh
+install_kubectl
+install_kubernetes_helm
+install_minikube
