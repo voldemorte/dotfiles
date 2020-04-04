@@ -29,4 +29,4 @@ brew cask install zoomus;
 brew cask install dropbox;
 brew cask install 1password;
 brew cask install 1clipboard;
-
+brew cask install vlc;
