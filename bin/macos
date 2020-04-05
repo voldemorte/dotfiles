@@ -3,7 +3,7 @@
 BREW_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh";
 echo -n "- Installing homebrew.... ";
 echo | /usr/bin/ruby -e "$(curl -fsSL $URL_BREW)" > /dev/null;
-if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; fi;
+if [ $? -eq 0 ]; then echo 'OK'; else echo 'Failed to install homebrew.'; exit 1; fi;
 brew install git;
 brew install docker;
 brew cask install background-music;
@@ -13,6 +13,7 @@ brew cask install google-chrome;
 brew cask install virtualbox;
 brew cask install virtualbox-extension-pack;
 brew install vim;
+mkdir -p ${HOME}/.vim/swap;
 brew install zsh;
 if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
