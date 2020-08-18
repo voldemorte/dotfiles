@@ -70,7 +70,8 @@ plugins=(
   aws
   ssh-agent
   sublime
-  zsh-autosuggestions)
+  zsh-autosuggestions
+  kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
