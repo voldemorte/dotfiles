@@ -31,5 +31,9 @@ brew install --cask 1password;
 brew install --cask 1clipboard;
 brew install --cask vlc;
 brew install --cask videostream;
+brew install --cask protonmail-bridge;
+brew install --cask thunderbird;
+brew install terraform;
+brew install terragrunt;
 brew install tmux;
 mkdir ~/bin
