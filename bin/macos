@@ -30,5 +30,6 @@ brew install --cask dropbox;
 brew install --cask 1password;
 brew install --cask 1clipboard;
 brew install --cask vlc;
+brew install --cask videostream;
 brew install tmux;
 mkdir ~/bin
