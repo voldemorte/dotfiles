@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$PATH
+export GOPATH=${HOME}/go
+export PATH=$HOME/bin:$GOPATH/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -105,5 +106,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tor="docker run --rm -p 9050:9050 --cap-drop ALL nikhilch/tor"
 
-export GOPATH=${HOME}/go
+rtorrent() {docker run -ti --rm -v "$1":/opt -w /opt nikhilch/rtorrent;}
+
 if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi
