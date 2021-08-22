@@ -24,5 +24,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     git clone https://tpope.io/vim/fugitive.git "${HOME}/.vim/pack/git-plugins/start/tpope"
     vim -u NONE -c "helptags fugitive/doc" -c q
   fi
+  if [ ! -d "${HOME}/.vim/pack/git-plugins/start/vim-terraform" ]; then
+    mkdir -p ${HOME}/.vim/pack/git-plugins/start
+    git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/git-plugins/start/vim-terraform
+  fi
   cp .vimrc ~/.vimrc
 fi
