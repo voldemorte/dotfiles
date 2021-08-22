@@ -3,6 +3,9 @@
 set -x
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+  fi;
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/ale" ]; then
     mkdir -p ${HOME}/.vim/pack/git-plugins/start
     git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/git-plugins/start/ale
@@ -15,6 +18,11 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/nerdtree-git-plugin" ]; then
     mkdir ${HOME}/.vim/pack/git-plugins/start
     git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/pack/git-plugins/start/nerdtree-git-plugin
+  fi
+  if [ ! -d "${HOME}/.vim/pack/git-plugins/start/tpope" ]; then
+    mkdir -p "${HOME}/.vim/pack/git-plugins/start/tpope"
+    git clone https://tpope.io/vim/fugitive.git "${HOME}/.vim/pack/git-plugins/start/tpope"
+    vim -u NONE -c "helptags fugitive/doc" -c q
   fi
   cp .vimrc ~/.vimrc
 fi
