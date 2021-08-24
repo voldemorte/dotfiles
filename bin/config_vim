@@ -75,7 +75,7 @@ if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux-gnu"* ]]; then
     git clone --depth 1 \
       https://github.com/fatih/vim-go.git \
       ${HOME}/.vim/pack/git-plugins/start/vim-go
-    vim -u NONE \
+    vim \
       -c "GoInstallBinaries" \
       -c "helptags ALL" \
       -c "q"
