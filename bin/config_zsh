@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    git clone --depth 1 \
+      https://github.com/zsh-users/zsh-autosuggestions \
+      ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
+  fi;
   cp .zshrc ~/.zshrc
 fi

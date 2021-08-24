@@ -2,31 +2,82 @@
 
 set -x
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  if [ ! -d "${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${HOME}/.oh-my-zsh/custom/plugins/zsh-autosuggestions;
-  fi;
+if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  rm -fr ~/.vimrc ~/.vim
+  cp -fr .vim ~/.vim
+
+  ## ale for code linting
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/ale" ]; then
     mkdir -p ${HOME}/.vim/pack/git-plugins/start
-    git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.vim/pack/git-plugins/start/ale
+    git clone --depth 1 \
+      https://github.com/dense-analysis/ale.git \
+      ~/.vim/pack/git-plugins/start/ale
   fi
+
+  ## nerdtree filesystem pane plugin
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/nerdtree" ]; then
     mkdir -p ${HOME}/.vim/pack/git-plugins/start
-    git clone --depth 1 https://github.com/preservim/nerdtree.git ${HOME}/.vim/pack/git-plugins/start/nerdtree
-    vim -u NONE -c "helptags ${HOME}/.vim/pack/git-plugins/start/nerdtree/doc" -c q
+    git clone --depth 1 \
+      https://github.com/preservim/nerdtree.git \
+      ${HOME}/.vim/pack/git-plugins/start/nerdtree
+    vim -u NONE \
+      -c "helptags ${HOME}/.vim/pack/git-plugins/start/nerdtree/doc" \
+      -c q
   fi
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/nerdtree-git-plugin" ]; then
     mkdir ${HOME}/.vim/pack/git-plugins/start
-    git clone https://github.com/Xuyuanp/nerdtree-git-plugin.git ~/.vim/pack/git-plugins/start/nerdtree-git-plugin
+    git clone --depth 1 \
+      https://github.com/Xuyuanp/nerdtree-git-plugin.git \
+      ~/.vim/pack/git-plugins/start/nerdtree-git-plugin
   fi
+
+  ## Fugitive plugin
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/tpope" ]; then
     mkdir -p "${HOME}/.vim/pack/git-plugins/start/tpope"
-    git clone https://tpope.io/vim/fugitive.git "${HOME}/.vim/pack/git-plugins/start/tpope"
-    vim -u NONE -c "helptags fugitive/doc" -c q
+    git clone --depth 1 \
+      https://tpope.io/vim/fugitive.git \
+      "${HOME}/.vim/pack/git-plugins/start/tpope"
+    vim -u NONE \
+      -c "helptags fugitive/doc" \
+      -c q
   fi
+
+  ## vim-terraform plugin for terraform syntax highlighting
   if [ ! -d "${HOME}/.vim/pack/git-plugins/start/vim-terraform" ]; then
     mkdir -p ${HOME}/.vim/pack/git-plugins/start
-    git clone https://github.com/hashivim/vim-terraform.git ~/.vim/pack/git-plugins/start/vim-terraform
+    git clone --depth 1 \
+      https://github.com/hashivim/vim-terraform.git \
+      ~/.vim/pack/git-plugins/start/vim-terraform
   fi
-  cp .vimrc ~/.vimrc
+
+  ## vim-airline for status bar
+  if [ ! -d "${HOME}/.vim/pack/git-plugins/start/vim-airline" ]; then
+    mkdir -p ${HOME}/.vim/pack/git-plugins/start
+    git clone --depth 1 \
+      https://github.com/vim-airline/vim-airline \
+      ~/.vim/pack/git-plugins/start/vim-airline
+  fi
+
+  ## indentation plugin for yaml
+  if [ ! -d "${HOME}/.vim/pack/git-plugins/start/indentline" ]; then
+    mkdir -p ${HOME}/.vim/pack/git-plugins/start
+    git clone --depth 1 \
+      https://github.com/Yggdroot/indentLine.git \
+      ${HOME}/.vim/pack/git-plugins/start/indentline
+    vim -u NONE \
+      -c "helptags ~/.vim/pack/git-plugins/start/indentline/doc" \
+      -c "q"
+  fi
+
+  ## vim-go plugin for golang
+  if [ ! -d "${HOME}/.vim/pack/git-plugins/start/vim-go" ]; then
+    mkdir -p ${HOME}/.vim/pack/git-plugins/start
+    git clone --depth 1 \
+      https://github.com/fatih/vim-go.git \
+      ${HOME}/.vim/pack/git-plugins/start/vim-go
+    vim -u NONE \
+      -c "GoInstallBinaries" \
+      -c "helptags ALL" \
+      -c "q"
+  fi
 fi
