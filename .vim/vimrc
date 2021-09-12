@@ -39,7 +39,7 @@ let g:indentLine_char = '⦙'
 
 " Install nerdtree https://github.com/preservim/nerdtree
 let NERDTreeShowHidden=1
-let NERDTreeIgnore=['\.git$[[dir]]']
+let NERDTreeIgnore=['\.git$[[dir]]', '\.DS_Store[[file]]']
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") && v:this_session == "" | NERDTree | endif
