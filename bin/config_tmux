@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -x
+
+if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  if [ ! -d "${HOME}/.tmux/plugins/tpm" ]; then
+    git clone --depth 1 \
+    https://github.com/tmux-plugins/tpm \
+    ~/.tmux/plugins/tpm;
+  fi
+  cp ./.tmux.conf ~/.tmux.conf;
+fi

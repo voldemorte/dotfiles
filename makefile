@@ -13,3 +13,7 @@ configure_zsh:
 .PHONY: configure_vim
 configure_vim:
 	bin/config_vim
+
+.PHONY: configure_tmux
+configure_tmux:
+	bin/config_tmux
