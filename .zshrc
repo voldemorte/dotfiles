@@ -67,10 +67,7 @@ ZSH_THEME="random"
 plugins=(
   git
   macos
-  docker
-  aws
   ssh-agent
-  sublime
   zsh-autosuggestions
   kubectl)
 
@@ -105,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias tor="docker run --rm -p 9050:9050 --cap-drop ALL nikhilch/tor"
+alias docker="podman"
 
 rtorrent() {docker run -ti --rm -v "$1":/opt -w /opt nikhilch/rtorrent;}
 
