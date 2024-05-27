@@ -9,9 +9,6 @@ brew install podman;
 brew install podman-compose;
 podman machine init
 podman machine start
-#brew install colima;
-#brew install docker;
-#brew install docker-compose;
 brew install --cask firefox;
 brew install --cask eloston-chromium;
 brew install --cask google-chrome;
@@ -30,5 +27,6 @@ brew install terraform;
 brew install terragrunt;
 brew install tmux;
 brew install zsh;
+brew install neovim;
 chsh -s /bin/zsh;
 mkdir ~/bin
